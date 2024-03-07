@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block start %}
+<div class="container d-flex flex-wrap mt index">
+  {% for restaurant in restaurants %}
+  <div class="card mb-2 mx-2">
+    <img src="{{restaurant.image.url}}" class="card-img-top" alt="..." />
+    <div class="card-body mx-2">
+      <h5 class="card-title mb-2 fs-2">{{restaurant.name}}</h5>
+      <p class="card-text">{{restaurant.description}}</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="text-dark mb-0 fs-5">Ratings: {{ restaurant.rating }}</p>
+        <span
+          class="star-rating me-2 mb-1"
+          id="stars_{{ restaurant.id }}"
+        ></span>
+        <script>
+          document.getElementById("stars_{{ restaurant.id }}").innerHTML = convertToStars({{ restaurant.rating }});
+          
+          
+        </script>
+      </div>
+
+      <div>
+        <i class="fa-solid fa-location-crosshairs"></i> {{restaurant.address}}
+      </div>
+      <div class="d-grid">
+        <a
+          href="/restaurant/{{restaurant.id}}"
+          class="btn btn-lg btn-primary mt-2"
+          >Menu</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<button class="cart-button fs-4"><a href='/cart/' class='white'>Cart</a> </button>
+<div class="filler-container" style="flex: 1; height: 400px"></div>
+{% endblock %}

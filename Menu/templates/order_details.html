@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block start %}
+<div class="container">
+    <h1 class="display-4 text-center mb-5">Order Details</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card bg-light mb-4">
+                <div class="card-header">
+                    <h2 class="h4 mb-0">Order Information</h2>
+                </div>
+                <div class="card-body">
+                    <p class="mb-1"><strong>Order ID:</strong> {{ order.id }}</p>
+                    <p class="mb-1"><strong>Order Status:</strong> {{ order.status }}</p>
+                    <p class="mb-1"><strong>Customer Name:</strong> {{ customer.username }}</p>
+                    <p class="mb-1"><strong>Customer Email:</strong> {{ customer.email }}</p>
+                    <p class="mb-1"><strong>Location:</strong> {{ order_info.location }}</p>
+                    <p class="mb-1"><strong>Phone:</strong> {{ order_info.phone }}</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2 class="h4 mb-0">Ordered Items</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Food</th>
+                                <th>Quantity</th>
+                      <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order_item in order_items %}
+                    <tr>
+                        <td>{{ order_item.food.name }}</td>
+                        <td>{{ order_item.quantity }}</td>
+                        <td>{{ order_item.calculate_item_total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                <p class="h5 text-right mb-0"><strong>Total Cost:</strong> {{ total_cost }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
+
+{% endblock  %}

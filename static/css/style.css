@@ -1,0 +1,183 @@
+body{
+  background-color: #85ffbd;
+      background-image: linear-gradient(
+        199deg,
+        #85ffbd 0%,
+        #fffb7d 50%,
+        #6ff274 100%
+      );
+      min-height: 100vh;
+      margin-top: 7rem;
+      
+      
+}
+
+.cards { 
+  flex-direction: row;
+  min-width: 20rem;
+}
+.img-thumbnail {
+  aspect-ratio: 9 / 12;
+  max-width: 7rem;
+  object-fit: cover;
+}
+.container {
+  justify-content: space-evenly;
+
+}
+.star-rating {
+  color: gold; /* Set the color to gold */
+  font-size: 24px; /* Set the font size to make the stars larger */
+}
+.logo{
+  margin: 0;
+  padding: 0;
+  vertical-align: auto;
+}
+.navbar{
+  padding: 0%;
+  
+}
+.mt{
+  margin-top: 8rem;
+}
+.fss-5{
+  font-size: 1.3rem;
+}
+
+.cart-button {
+  position: fixed; /* Position the button relative to the viewport */
+  bottom: 3rem; /* Distance from the bottom of the viewport */
+  right: 5rem; /* Distance from the right of the viewport */
+  display: inline-block;
+  width: 6rem; /* Adjust the width and height as needed */
+  height: 6rem;
+  border-radius: 50%; /* This makes the button round */
+  background-color: #fa9200; /* Button background color */
+  text-decoration: none;
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Show cursor as pointer on hover */
+}
+.index{
+  width:54%;
+}
+.menu{
+  align-self: flex-end;
+}
+.sidebar{
+  z-index: 2;
+  transition: 300ms;
+  position: fixed;
+  right: 0;
+  top: 0;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  width: 0px;
+  height: 100%;
+  background-color: rgb(33, 37, 41);
+  border: 1px solid rgb(91, 90, 90);
+}
+
+.sidetext{
+  color: rgb(184, 184, 184);
+  font-size: larger;
+  font-weight: 600;
+  text-decoration: none;
+}
+.textdiv{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid rgb(122, 122, 122);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgba(87, 87, 87, 0.16), 0 2px 10px 0 rgba(76, 76, 76, 0.12);
+  width: 100%;
+}
+.textdiv:hover{
+  background-color: rgb(0, 85, 255);
+  color: azure;
+}
+.textdiv:hover .sidetext {
+  color: azure; /* Make sure child text color changes */
+}
+.logout{
+  align-self: flex-end;
+  background-color: rgb(255, 47, 47);
+}
+.login{
+  align-self: flex-end;
+  background-color: rgb(0, 194, 23);
+}
+.login a{
+  color: rgb(255, 255, 255);
+  border-bottom: 0px;
+}
+.logout a{
+  color: rgb(255, 255, 255);
+  border-bottom: 0px;
+}
+.sidebody{
+  width: 100%;
+}
+.fixed-top{
+  z-index: 0;
+}
+.opensidebar{
+  position: fixed;
+  top:30px;
+  right: 20px;
+  transition: 300ms;
+}
+.white{
+  color: white;
+  text-decoration: unset;
+}
+
+
+@media screen and (max-width: 768px) {
+  .logo{
+    height: 60px;
+  }
+  .index{
+    width:94%;
+  }
+  .navtext{
+    font-size: 1rem;
+  }
+  .fss-5{
+    font-size: 1rem;
+  }
+  body{
+    margin-top: 5rem;
+  }
+  .cart-button {
+    position: fixed; /* Position the button relative to the viewport */
+    bottom: 2rem; /* Distance from the bottom of the viewport */
+    right: 2rem; /* Distance from the right of the viewport */
+    display: inline-block;
+    width: 5rem; /* Adjust the width and height as needed */
+    height: 5rem;
+    border-radius: 50%; /* This makes the button round */
+    background-color: #fa9200; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Show cursor as pointer on hover */
+  } 
+  .opensidebar{
+    font-size: larger;
+    position: fixed;
+    top:20px;
+    right: 15px;
+  }
+  .nav-links{
+    display: none;
+  }
+}
+

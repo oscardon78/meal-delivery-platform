@@ -1,0 +1,96 @@
+{% extends "base.html" %} {% block start %}
+<div class="container d-flex mt-5 flex-wrap">
+  {% for f in item %}
+  <div class="card cards mt-2 mx-2">
+      <img
+        src="{{ f.food.image.url }}"
+        alt="Food image"
+        class="img-thumbnail"/>
+    
+    <div class="card-body mx-2">
+      <h5 class="card-title">{{ f.food.name }}</h5>
+      <p class="card-text">Rs : {{ f.food.cost }}</p>
+      <div class="d-flex">
+        <button class="btn btn-danger decrement-btn" data-food-id="{{ f.food.id }}">-</button>
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item item{{ f.food.id }}">{{ f.quantity }}</li>
+        </ul>
+        <button class="btn btn-success increment-btn" data-food-id="{{ f.food.id }}">+</button>
+      </div>
+      <ul class="list-group list-group-horizontal">
+        <li class="list-group-item mt-2 total{{ f.food.id }}">Total : {{ f.total }}</li>
+      </ul>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% if item %}
+<form
+  id="order-form"
+  action="{% url "add_details" %}"
+  method="post"
+  style="text-align: center"
+>
+  <p class="cart_total">Cart Total Rs : {{cart.total}}</p>
+  {% csrf_token %}
+  <div class="filler-container" style="flex: 1; height: 200px"></div>
+  <button type="submit" class="btn btn-primary btn-lg mt-5">Place Order</button>
+</form>
+{% else %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+  <div class="text-center">
+    <h1>Cart is Empty</h1>
+  </div>
+</div>
+{% endif %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $(".decrement-btn").click(function () {
+      var foodId = $(this).data("food-id");
+      var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+      $.ajax({
+        type: "POST",
+        url: "/decrement_url/",
+        data: {
+          food_id: foodId,
+          csrfmiddlewaretoken: csrfToken,
+        },
+        success: function (response) {
+          if (response.success) {
+            updateCounter(foodId, response.quantity,response.cost,response.cart_total);
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error(xhr.responseText); // Log any errors
+        },
+      });
+    });
+
+    $(".increment-btn").click(function () {
+      var foodId = $(this).data("food-id");
+      var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+      $.ajax({
+        type: "POST",
+        url: "/increment_url/",
+        data: {
+          food_id: foodId,
+          csrfmiddlewaretoken: csrfToken,
+        },
+        success: function (response) {
+          console.log(response); // Check response from server
+          if (response.success) {
+            updateCounter(foodId, response.quantity,response.cost,response.cart_total);
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error(xhr.responseText); // Log any errors
+        },
+      });
+    });
+
+    
+  });
+</script>
+{% endblock %}
